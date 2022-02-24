@@ -40,7 +40,11 @@ func JSON(jsonData []byte) {
 		return compileTime(entries[i]) > compileTime(entries[j])
 	})
 
+	fmt.Println("Compile Time\tPackage Name")
 	for _, e := range entries {
-		fmt.Println(e.Package, compileTime(e))
+		if e.Package == "" {
+			continue
+		}
+		fmt.Println(fmt.Sprintf("%-16s%s", compileTime(e), e.Package))
 	}
 }
